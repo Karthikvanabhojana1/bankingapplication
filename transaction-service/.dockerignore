@@ -1,0 +1,9 @@
+target/
+!target/*.jar
+src/
+pom.xml
+.git/
+.gitignore
+README.md
+*.md
+.DS_Store

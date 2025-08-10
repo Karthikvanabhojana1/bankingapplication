@@ -1,0 +1,904 @@
+{
+	"info": {
+		"_postman_id": "banking-app-collection",
+		"name": "Banking Application - Microservices",
+		"description": "Complete Postman collection for Banking Application microservices including User, Account, Transaction, Payment, and Notification services",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Eureka Server",
+			"item": [
+				{
+					"name": "Get Eureka Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8761",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8761"
+						}
+					}
+				},
+				{
+					"name": "Get Registered Services",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8761/eureka/apps",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8761",
+							"path": ["eureka", "apps"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "API Gateway",
+			"item": [
+				{
+					"name": "Gateway Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actuator/health",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["actuator", "health"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "User Service (via API Gateway)",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"User\",\n  \"email\": \"test@example.com\",\n  \"phoneNumber\": \"1234567890\",\n  \"address\": \"123 Test Street, Test City, TC 12345\"\n}"
+						},
+						"url": {
+                            "raw": "http://localhost:8080/user-service/api/users",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["user-service", "api", "users"]
+						}
+					}
+				},
+				{
+					"name": "Get User by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/user-service/api/users/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["user-service", "api", "users", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get User by Username",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/user-service/api/users/username/john_doe",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["user-service", "api", "users", "username", "john_doe"]
+						}
+					}
+				},
+				{
+					"name": "Get User by Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/user-service/api/users/email/john.doe@example.com",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["user-service", "api", "users", "email", "john.doe@example.com"]
+						}
+					}
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"firstName\": \"John Updated\",\n  \"lastName\": \"Doe Updated\",\n  \"email\": \"john.doe.updated@example.com\",\n  \"phoneNumber\": \"1234567890\",\n  \"address\": \"456 Updated St, New York, NY 10001\"\n}"
+						},
+						"url": {
+                            "raw": "http://localhost:8080/user-service/api/users/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["user-service", "api", "users", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/user-service/api/users/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["user-service", "api", "users", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "User Service (Direct)",
+			"item": [
+				{
+					"name": "User Service Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/actuator/health",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8081",
+							"path": ["actuator", "health"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Account Service (via API Gateway)",
+			"item": [
+				{
+					"name": "Create Account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+                            "raw": "{\n  \"userId\": 1,\n  \"accountNumber\": \"ACC100200300\",\n  \"accountType\": \"SAVINGS\",\n  \"balance\": 1000.00,\n  \"currency\": \"USD\"\n}"
+						},
+						"url": {
+                            "raw": "http://localhost:8080/account-service/api/accounts",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["account-service", "api", "accounts"]
+						}
+					}
+				},
+				{
+					"name": "Get Account by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/account-service/api/accounts/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["account-service", "api", "accounts", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get Accounts by User ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/account-service/api/accounts/user/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["account-service", "api", "accounts", "user", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get Accounts by Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/account-service/api/accounts/type/SAVINGS",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["account-service", "api", "accounts", "type", "SAVINGS"]
+						}
+					}
+				},
+				{
+					"name": "Update Account Balance",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"balance\": 1500.00\n}"
+						},
+						"url": {
+                            "raw": "http://localhost:8080/account-service/api/accounts/1/balance",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["account-service", "api", "accounts", "1", "balance"]
+						}
+					}
+				},
+				{
+					"name": "Update Account Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/account-service/api/accounts/1/status?status=SUSPENDED",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["account-service", "api", "accounts", "1", "status"],
+							"query": [
+								{
+									"key": "status",
+									"value": "SUSPENDED"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Account",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/account-service/api/accounts/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["account-service", "api", "accounts", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Account Service (Direct)",
+			"item": [
+				{
+					"name": "Account Service Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/actuator/health",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8082",
+							"path": ["actuator", "health"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Transaction Service (via API Gateway)",
+			"item": [
+				{
+					"name": "Create Transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fromAccountId\": 1,\n  \"toAccountId\": 2,\n  \"amount\": 100.00,\n  \"currency\": \"USD\",\n  \"transactionType\": \"TRANSFER\",\n  \"description\": \"Monthly rent payment\",\n  \"referenceNumber\": \"REF123456\"\n}"
+						},
+						"url": {
+                            "raw": "http://localhost:8080/transaction-service/api/transactions",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["transaction-service", "api", "transactions"]
+						}
+					}
+				},
+				{
+					"name": "Get Transaction by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/transaction-service/api/transactions/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["transaction-service", "api", "transactions", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get Transaction by Transaction ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/transaction-service/api/transactions/transaction-id/TXN123456",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["transaction-service", "api", "transactions", "transaction-id", "TXN123456"]
+						}
+					}
+				},
+				{
+					"name": "Get Transactions by From Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/transaction-service/api/transactions/from-account/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["transaction-service", "api", "transactions", "from-account", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get Transactions by To Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/transaction-service/api/transactions/to-account/2",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["transaction-service", "api", "transactions", "to-account", "2"]
+						}
+					}
+				},
+				{
+					"name": "Get Transactions by Account ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/transaction-service/api/transactions/account/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["transaction-service", "api", "transactions", "account", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get Transactions by Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/transaction-service/api/transactions/type/TRANSFER",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["transaction-service", "api", "transactions", "type", "TRANSFER"]
+						}
+					}
+				},
+				{
+					"name": "Get Transactions by Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/transaction-service/api/transactions/status/COMPLETED",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["transaction-service", "api", "transactions", "status", "COMPLETED"]
+						}
+					}
+				},
+				{
+					"name": "Get Transactions by Amount Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/transaction-service/api/transactions/amount/range?minAmount=50&maxAmount=500",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["transaction-service", "api", "transactions", "amount", "range"],
+							"query": [
+								{
+									"key": "minAmount",
+									"value": "50"
+								},
+								{
+									"key": "maxAmount",
+									"value": "500"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Transactions by Date Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/transaction-service/api/transactions/date/range?startDate=2024-01-01T00:00:00&endDate=2024-12-31T23:59:59",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["transaction-service", "api", "transactions", "date", "range"],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-01-01T00:00:00"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-12-31T23:59:59"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Transaction Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/transaction-service/api/transactions/1/status?status=COMPLETED",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["transaction-service", "api", "transactions", "1", "status"],
+							"query": [
+								{
+									"key": "status",
+									"value": "COMPLETED"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Generate Transaction ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/transaction-service/api/transactions/generate/transaction-id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["transaction-service", "api", "transactions", "generate", "transaction-id"]
+						}
+					}
+				},
+				{
+					"name": "Generate Reference Number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/transaction-service/api/transactions/generate/reference-number",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["transaction-service", "api", "transactions", "generate", "reference-number"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Transaction Service (Direct)",
+			"item": [
+				{
+					"name": "Transaction Service Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/actuator/health",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8083",
+							"path": ["actuator", "health"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Payment Service (via API Gateway)",
+			"item": [
+				{
+					"name": "Create Payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+                            "raw": "{\n  \"paymentId\": \"PAY123456\",\n  \"fromAccountId\": 1,\n  \"toAccountId\": 2,\n  \"amount\": 250.00,\n  \"paymentType\": \"TRANSFER\",\n  \"paymentMethod\": \"BANK_TRANSFER\",\n  \"description\": \"Utility bill payment\",\n  \"referenceNumber\": \"PAY789012\"\n}"
+						},
+						"url": {
+                            "raw": "http://localhost:8080/payment-service/api/payments",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["payment-service", "api", "payments"]
+						}
+					}
+				},
+				{
+					"name": "Get Payment by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/payment-service/api/payments/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["payment-service", "api", "payments", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get Payments by From Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/payment-service/api/payments/from-account/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["payment-service", "api", "payments", "from-account", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get Payments by To Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/payment-service/api/payments/to-account/2",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["payment-service", "api", "payments", "to-account", "2"]
+						}
+					}
+				},
+				{
+					"name": "Get Payments by Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/payment-service/api/payments/status/COMPLETED",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["payment-service", "api", "payments", "status", "COMPLETED"]
+						}
+					}
+				},
+				{
+					"name": "Update Payment Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/payment-service/api/payments/1/status?status=COMPLETED",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["payment-service", "api", "payments", "1", "status"],
+							"query": [
+								{
+									"key": "status",
+									"value": "COMPLETED"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Payment Service (Direct)",
+			"item": [
+				{
+					"name": "Payment Service Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/actuator/health",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8084",
+							"path": ["actuator", "health"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Notification Service (via API Gateway)",
+			"item": [
+				{
+					"name": "Send Notification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": 1,\n  \"type\": \"EMAIL\",\n  \"subject\": \"Transaction Completed\",\n  \"message\": \"Your transaction of $100.00 has been completed successfully.\",\n  \"recipient\": \"john.doe@example.com\"\n}"
+						},
+						"url": {
+                            "raw": "http://localhost:8080/notification-service/api/notifications",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["notification-service", "api", "notifications"]
+						}
+					}
+				},
+				{
+					"name": "Get Notification by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/notification-service/api/notifications/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["notification-service", "api", "notifications", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get Notifications by User ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/notification-service/api/notifications/user/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["notification-service", "api", "notifications", "user", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get Notifications by Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/notification-service/api/notifications/type/EMAIL",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["notification-service", "api", "notifications", "type", "EMAIL"]
+						}
+					}
+				},
+				{
+					"name": "Mark Notification as Read",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+                            "raw": "http://localhost:8080/notification-service/api/notifications/1/read",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+                            "path": ["notification-service", "api", "notifications", "1", "read"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Notification Service (Direct)",
+			"item": [
+				{
+					"name": "Notification Service Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/actuator/health",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["actuator", "health"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Monitoring",
+			"item": [
+				{
+					"name": "Prometheus Metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/metrics",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "9090",
+							"path": ["metrics"]
+						}
+					}
+				},
+				{
+					"name": "Grafana Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000"
+						}
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost",
+			"type": "string"
+		},
+		{
+			"key": "eurekaPort",
+			"value": "8761",
+			"type": "string"
+		},
+		{
+			"key": "gatewayPort",
+			"value": "8080",
+			"type": "string"
+		},
+		{
+			"key": "userServicePort",
+			"value": "8081",
+			"type": "string"
+		},
+		{
+			"key": "accountServicePort",
+			"value": "8082",
+			"type": "string"
+		},
+		{
+			"key": "transactionServicePort",
+			"value": "8083",
+			"type": "string"
+		},
+		{
+			"key": "paymentServicePort",
+			"value": "8084",
+			"type": "string"
+		},
+		{
+			"key": "notificationServicePort",
+			"value": "8085",
+			"type": "string"
+		},
+		{
+			"key": "prometheusPort",
+			"value": "9090",
+			"type": "string"
+		},
+		{
+			"key": "grafanaPort",
+			"value": "3000",
+			"type": "string"
+		}
+	]
+}

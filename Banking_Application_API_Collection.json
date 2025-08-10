@@ -1,0 +1,1084 @@
+{
+	"info": {
+		"_postman_id": "banking-app-api-collection",
+		"name": "Banking Application API Collection",
+		"description": "Comprehensive API collection for the Banking Microservices Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "banking-app"
+	},
+	"item": [
+		{
+			"name": "🏠 Infrastructure Services",
+			"item": [
+				{
+					"name": "Eureka Server",
+					"item": [
+						{
+							"name": "Eureka Dashboard",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{eureka_url}}/",
+									"host": ["{{eureka_url}}"],
+									"path": [""]
+								},
+								"description": "Access the Eureka Service Discovery Dashboard"
+							}
+						},
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{eureka_url}}/actuator/health",
+									"host": ["{{eureka_url}}"],
+									"path": ["actuator", "health"]
+								},
+								"description": "Check Eureka Server health status"
+							}
+						},
+						{
+							"name": "Registered Services",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{eureka_url}}/eureka/apps",
+									"host": ["{{eureka_url}}"],
+									"path": ["eureka", "apps"]
+								},
+								"description": "Get list of all registered services"
+							}
+						}
+					]
+				},
+				{
+					"name": "API Gateway",
+					"item": [
+						{
+							"name": "Gateway Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/actuator/health",
+									"host": ["{{gateway_url}}"],
+									"path": ["actuator", "health"]
+								},
+								"description": "Check API Gateway health status"
+							}
+						},
+						{
+							"name": "Swagger UI",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/swagger-ui.html",
+									"host": ["{{gateway_url}}"],
+									"path": ["swagger-ui.html"]
+								},
+								"description": "Access API Gateway Swagger UI"
+							}
+						},
+						{
+							"name": "API Documentation",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api-docs",
+									"host": ["{{gateway_url}}"],
+									"path": ["api-docs"]
+								},
+								"description": "Get API Gateway OpenAPI documentation"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "👥 User Service",
+			"item": [
+				{
+					"name": "Direct Service Calls",
+					"item": [
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{user_service_url}}/actuator/health",
+									"host": ["{{user_service_url}}"],
+									"path": ["actuator", "health"]
+								},
+								"description": "Check User Service health directly"
+							}
+						},
+						{
+							"name": "Get All Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{user_service_url}}/users",
+									"host": ["{{user_service_url}}"],
+									"path": ["users"]
+								},
+								"description": "Get all users directly from User Service"
+							}
+						},
+						{
+							"name": "Create User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phoneNumber\": \"1234567890\",\n  \"address\": \"123 Main St, New York, NY 10001\",\n  \"userType\": \"INDIVIDUAL\"\n}"
+								},
+								"url": {
+									"raw": "{{user_service_url}}/users",
+									"host": ["{{user_service_url}}"],
+									"path": ["users"]
+								},
+								"description": "Create a new user directly in User Service"
+							}
+						}
+					]
+				},
+				{
+					"name": "Through API Gateway",
+					"item": [
+						{
+							"name": "Get All Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/users",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "users"]
+								},
+								"description": "Get all users through API Gateway"
+							}
+						},
+						{
+							"name": "Create User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Smith\",\n  \"email\": \"jane.smith@example.com\",\n  \"phoneNumber\": \"9876543210\",\n  \"address\": \"456 Oak Ave, Los Angeles, CA 90210\",\n  \"userType\": \"INDIVIDUAL\"\n}"
+								},
+								"url": {
+									"raw": "{{gateway_url}}/api/users",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "users"]
+								},
+								"description": "Create a new user through API Gateway"
+							}
+						},
+						{
+							"name": "Get User by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/users/1",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "users", "1"]
+								},
+								"description": "Get user by ID through API Gateway"
+							}
+						},
+						{
+							"name": "Get User by Email",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/users/email/john.doe@example.com",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "users", "email", "john.doe@example.com"]
+								},
+								"description": "Get user by email through API Gateway"
+							}
+						},
+						{
+							"name": "Update User",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"firstName\": \"John Updated\",\n  \"lastName\": \"Doe Updated\",\n  \"email\": \"john.doe.updated@example.com\",\n  \"phoneNumber\": \"1234567890\",\n  \"address\": \"456 Updated St, New York, NY 10001\",\n  \"userType\": \"INDIVIDUAL\"\n}"
+								},
+								"url": {
+									"raw": "{{gateway_url}}/api/users/1",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "users", "1"]
+								},
+								"description": "Update user through API Gateway"
+							}
+						},
+						{
+							"name": "Update User Status",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/users/1/status?status=ACTIVE",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "users", "1", "status"],
+									"query": [
+										{
+											"key": "status",
+											"value": "ACTIVE"
+										}
+									]
+								},
+								"description": "Update user status through API Gateway"
+							}
+						},
+						{
+							"name": "Check Email Exists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/users/check/email/john.doe@example.com",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "users", "check", "email", "john.doe@example.com"]
+								},
+								"description": "Check if email exists through API Gateway"
+							}
+						},
+						{
+							"name": "Check Phone Exists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/users/check/phone/1234567890",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "users", "check", "phone", "1234567890"]
+								},
+								"description": "Check if phone number exists through API Gateway"
+							}
+						},
+						{
+							"name": "Get Users by Type",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/users/type/INDIVIDUAL",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "users", "type", "INDIVIDUAL"]
+								},
+								"description": "Get users by type through API Gateway"
+							}
+						},
+						{
+							"name": "Get Users by Status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/users/status/ACTIVE",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "users", "status", "ACTIVE"]
+								},
+								"description": "Get users by status through API Gateway"
+							}
+						},
+						{
+							"name": "Search Users by Name",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/users/search?name=John",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "users", "search"],
+									"query": [
+										{
+											"key": "name",
+											"value": "John"
+										}
+									]
+								},
+								"description": "Search users by name through API Gateway"
+							}
+						},
+						{
+							"name": "Delete User",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/users/1",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "users", "1"]
+								},
+								"description": "Delete user through API Gateway"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "🏦 Account Service",
+			"item": [
+				{
+					"name": "Direct Service Calls",
+					"item": [
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{account_service_url}}/actuator/health",
+									"host": ["{{account_service_url}}"],
+									"path": ["actuator", "health"]
+								},
+								"description": "Check Account Service health directly"
+							}
+						},
+						{
+							"name": "Generate Account Number",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{account_service_url}}/api/accounts/generate-number",
+									"host": ["{{account_service_url}}"],
+									"path": ["api", "accounts", "generate-number"]
+								},
+								"description": "Generate a new account number directly from Account Service"
+							}
+						}
+					]
+				},
+				{
+					"name": "Through API Gateway",
+					"item": [
+						{
+							"name": "Generate Account Number",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/accounts/generate-number",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "accounts", "generate-number"]
+								},
+								"description": "Generate a new account number through API Gateway"
+							}
+						},
+						{
+							"name": "Create Account",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"userId\": 1,\n  \"accountType\": \"SAVINGS\",\n  \"balance\": \"5000.00\",\n  \"currency\": \"USD\",\n  \"accountNumber\": \"1234567890\"\n}"
+								},
+								"url": {
+									"raw": "{{gateway_url}}/api/accounts",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "accounts"]
+								},
+								"description": "Create a new account through API Gateway"
+							}
+						},
+						{
+							"name": "Get Account by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/accounts/1",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "accounts", "1"]
+								},
+								"description": "Get account by ID through API Gateway"
+							}
+						},
+						{
+							"name": "Get Account by Number",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/accounts/number/1234567890",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "accounts", "number", "1234567890"]
+								},
+								"description": "Get account by account number through API Gateway"
+							}
+						},
+						{
+							"name": "Get Accounts by User ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/accounts/user/1",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "accounts", "user", "1"]
+								},
+								"description": "Get all accounts for a specific user through API Gateway"
+							}
+						},
+						{
+							"name": "Get Accounts by Type",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/accounts/type/SAVINGS",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "accounts", "type", "SAVINGS"]
+								},
+								"description": "Get accounts by type through API Gateway"
+							}
+						},
+						{
+							"name": "Get Accounts by Currency",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/accounts/currency/USD",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "accounts", "currency", "USD"]
+								},
+								"description": "Get accounts by currency through API Gateway"
+							}
+						},
+						{
+							"name": "Get Accounts by Balance Range",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/accounts/balance/range?minBalance=1000&maxBalance=10000",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "accounts", "balance", "range"],
+									"query": [
+										{
+											"key": "minBalance",
+											"value": "1000"
+										},
+										{
+											"key": "maxBalance",
+											"value": "10000"
+										}
+									]
+								},
+								"description": "Get accounts by balance range through API Gateway"
+							}
+						},
+						{
+							"name": "Update Account Status",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/accounts/1/status?status=ACTIVE",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "accounts", "1", "status"],
+									"query": [
+										{
+											"key": "status",
+											"value": "ACTIVE"
+										}
+									]
+								},
+								"description": "Update account status through API Gateway"
+							}
+						},
+						{
+							"name": "Update Account Balance",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/accounts/1/balance?newBalance=7500.00",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "accounts", "1", "balance"],
+									"query": [
+										{
+											"key": "newBalance",
+											"value": "7500.00"
+										}
+									]
+								},
+								"description": "Update account balance through API Gateway"
+							}
+						},
+						{
+							"name": "Check Account Exists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/accounts/check/1234567890",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "accounts", "check", "1234567890"]
+								},
+								"description": "Check if account exists through API Gateway"
+							}
+						},
+						{
+							"name": "Count Accounts by User and Status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/accounts/count/user/1/status/ACTIVE",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "accounts", "count", "user", "1", "status", "ACTIVE"]
+								},
+								"description": "Count accounts by user ID and status through API Gateway"
+							}
+						},
+						{
+							"name": "Delete Account",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/accounts/1",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "accounts", "1"]
+								},
+								"description": "Delete account through API Gateway"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "💳 Transaction Service",
+			"item": [
+				{
+					"name": "Direct Service Calls",
+					"item": [
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{transaction_service_url}}/actuator/health",
+									"host": ["{{transaction_service_url}}"],
+									"path": ["actuator", "health"]
+								},
+								"description": "Check Transaction Service health directly"
+							}
+						},
+						{
+							"name": "Generate Transaction ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{transaction_service_url}}/api/transactions/generate/transaction-id",
+									"host": ["{{transaction_service_url}}"],
+									"path": ["api", "transactions", "generate", "transaction-id"]
+								},
+								"description": "Generate a new transaction ID directly from Transaction Service"
+							}
+						},
+						{
+							"name": "Generate Reference Number",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{transaction_service_url}}/api/transactions/generate/reference-number",
+									"host": ["{{transaction_service_url}}"],
+									"path": ["api", "transactions", "generate", "reference-number"]
+								},
+								"description": "Generate a new reference number directly from Transaction Service"
+							}
+						}
+					]
+				},
+				{
+					"name": "Through API Gateway",
+					"item": [
+						{
+							"name": "Generate Transaction ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/generate/transaction-id",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "generate", "transaction-id"]
+								},
+								"description": "Generate a new transaction ID through API Gateway"
+							}
+						},
+						{
+							"name": "Generate Reference Number",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/generate/reference-number",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "generate", "reference-number"]
+								},
+								"description": "Generate a new reference number through API Gateway"
+							}
+						},
+						{
+							"name": "Create Transaction",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"fromAccountId\": 1,\n  \"toAccountId\": 2,\n  \"amount\": \"1000.00\",\n  \"currency\": \"USD\",\n  \"transactionType\": \"TRANSFER\",\n  \"description\": \"Monthly rent payment\",\n  \"referenceNumber\": \"REF123456789\"\n}"
+								},
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions"]
+								},
+								"description": "Create a new transaction through API Gateway"
+							}
+						},
+						{
+							"name": "Get Transaction by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/1",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "1"]
+								},
+								"description": "Get transaction by ID through API Gateway"
+							}
+						},
+						{
+							"name": "Get Transaction by Transaction ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/transaction-id/TXN123456789",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "transaction-id", "TXN123456789"]
+								},
+								"description": "Get transaction by transaction ID through API Gateway"
+							}
+						},
+						{
+							"name": "Get Transactions by From Account",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/from-account/1",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "from-account", "1"]
+								},
+								"description": "Get transactions by from account ID through API Gateway"
+							}
+						},
+						{
+							"name": "Get Transactions by To Account",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/to-account/2",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "to-account", "2"]
+								},
+								"description": "Get transactions by to account ID through API Gateway"
+							}
+						},
+						{
+							"name": "Get Transactions by Account",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/account/1",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "account", "1"]
+								},
+								"description": "Get all transactions for an account through API Gateway"
+							}
+						},
+						{
+							"name": "Get Transactions by Type",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/type/TRANSFER",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "type", "TRANSFER"]
+								},
+								"description": "Get transactions by type through API Gateway"
+							}
+						},
+						{
+							"name": "Get Transactions by Status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/status/COMPLETED",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "status", "COMPLETED"]
+								},
+								"description": "Get transactions by status through API Gateway"
+							}
+						},
+						{
+							"name": "Get Transactions by Amount Range",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/amount/range?minAmount=100&maxAmount=5000",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "amount", "range"],
+									"query": [
+										{
+											"key": "minAmount",
+											"value": "100"
+										},
+										{
+											"key": "maxAmount",
+											"value": "5000"
+										}
+									]
+								},
+								"description": "Get transactions by amount range through API Gateway"
+							}
+						},
+						{
+							"name": "Get Transactions by Date Range",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/date/range?startDate=2024-01-01T00:00:00&endDate=2024-12-31T23:59:59",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "date", "range"],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2024-01-01T00:00:00"
+										},
+										{
+											"key": "endDate",
+											"value": "2024-12-31T23:59:59"
+										}
+									]
+								},
+								"description": "Get transactions by date range through API Gateway"
+							}
+						},
+						{
+							"name": "Get Transactions by Reference Number",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/reference/REF123456789",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "reference", "REF123456789"]
+								},
+								"description": "Get transactions by reference number through API Gateway"
+							}
+						},
+						{
+							"name": "Update Transaction Status",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/1/status?status=COMPLETED",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "1", "status"],
+									"query": [
+										{
+											"key": "status",
+											"value": "COMPLETED"
+										}
+									]
+								},
+								"description": "Update transaction status through API Gateway"
+							}
+						},
+						{
+							"name": "Check Transaction Exists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/check/TXN123456789",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "check", "TXN123456789"]
+								},
+								"description": "Check if transaction exists through API Gateway"
+							}
+						},
+						{
+							"name": "Count Transactions by From Account and Status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/count/from-account/1/status/COMPLETED",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "count", "from-account", "1", "status", "COMPLETED"]
+								},
+								"description": "Count transactions by from account and status through API Gateway"
+							}
+						},
+						{
+							"name": "Delete Transaction",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/transactions/1",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "transactions", "1"]
+								},
+								"description": "Delete transaction through API Gateway"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "💸 Payment Service",
+			"item": [
+				{
+					"name": "Direct Service Calls",
+					"item": [
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{payment_service_url}}/actuator/health",
+									"host": ["{{payment_service_url}}"],
+									"path": ["actuator", "health"]
+								},
+								"description": "Check Payment Service health directly"
+							}
+						}
+					]
+				},
+				{
+					"name": "Through API Gateway",
+					"item": [
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/payments/health",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "payments", "health"]
+								},
+								"description": "Check Payment Service health through API Gateway"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "🔔 Notification Service",
+			"item": [
+				{
+					"name": "Direct Service Calls",
+					"item": [
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{notification_service_url}}/actuator/health",
+									"host": ["{{notification_service_url}}"],
+									"path": ["actuator", "health"]
+								},
+								"description": "Check Notification Service health directly"
+							}
+						}
+					]
+				},
+				{
+					"name": "Through API Gateway",
+					"item": [
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_url}}/api/notifications/health",
+									"host": ["{{gateway_url}}"],
+									"path": ["api", "notifications", "health"]
+								},
+								"description": "Check Notification Service health through API Gateway"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "📊 Monitoring & Metrics",
+			"item": [
+				{
+					"name": "Prometheus Metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{prometheus_url}}/metrics",
+							"host": ["{{prometheus_url}}"],
+							"path": ["metrics"]
+						},
+						"description": "Get Prometheus metrics"
+					}
+				},
+				{
+					"name": "Grafana Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{grafana_url}}/",
+							"host": ["{{grafana_url}}"],
+							"path": [""]
+						},
+						"description": "Access Grafana monitoring dashboard"
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "test",
+			"script": {
+				"exec": [
+					"// Test script to verify API responses",
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test(\"Response has required fields\", function () {",
+					"    var jsonData = pm.response.json();",
+					"    pm.expect(jsonData).to.have.property('status');",
+					"    pm.expect(jsonData).to.have.property('message');",
+					"});"
+				],
+				"type": "text/javascript"
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "gateway_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "eureka_url",
+			"value": "http://localhost:8761",
+			"type": "string"
+		},
+		{
+			"key": "user_service_url",
+			"value": "http://localhost:8081",
+			"type": "string"
+		},
+		{
+			"key": "account_service_url",
+			"value": "http://localhost:8082",
+			"type": "string"
+		},
+		{
+			"key": "transaction_service_url",
+			"value": "http://localhost:8083",
+			"type": "string"
+		},
+		{
+			"key": "payment_service_url",
+			"value": "http://localhost:8084",
+			"type": "string"
+		},
+		{
+			"key": "notification_service_url",
+			"value": "http://localhost:8085",
+			"type": "string"
+		},
+		{
+			"key": "prometheus_url",
+			"value": "http://localhost:9090",
+			"type": "string"
+		},
+		{
+			"key": "grafana_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}

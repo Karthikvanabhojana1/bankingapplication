@@ -1,0 +1,48 @@
+server:
+  port: 0  # Random port for testing
+
+spring:
+  application:
+    name: api-gateway-test
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false  # Disable service discovery for tests
+      routes:
+        - id: test-route
+          uri: http://localhost:8081
+          predicates:
+            - Path=/test/**
+  security:
+    user:
+      name: testuser
+      password: testpass
+
+# JWT Configuration for testing
+jwt:
+  secret: test-jwt-secret-key-for-testing-purposes-only
+  expiration: 3600000  # 1 hour
+
+# Disable logging for tests
+logging:
+  level:
+    root: WARN
+    com.banking.gateway: WARN
+    org.springframework.cloud.gateway: WARN
+
+# Disable metrics for tests
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
+# Test rate limiting
+rate-limit:
+  requests-per-minute: 1000
+  requests-per-hour: 10000
+  requests-per-day: 100000

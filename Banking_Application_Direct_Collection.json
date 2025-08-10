@@ -1,0 +1,912 @@
+{
+	"info": {
+		"_postman_id": "banking-app-direct-collection",
+		"name": "Banking Application - Direct Service Collection",
+		"description": "Direct API collection for Banking Microservices (No API Gateway) - All services accessible directly",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "banking-app-direct"
+	},
+	"item": [
+		{
+			"name": "🏠 Infrastructure Services",
+			"item": [
+				{
+					"name": "Eureka Server",
+					"item": [
+						{
+							"name": "Eureka Dashboard",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{eureka_url}}/",
+									"host": ["{{eureka_url}}"],
+									"path": [""]
+								},
+								"description": "Access the Eureka Service Discovery Dashboard"
+							}
+						},
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{eureka_url}}/actuator/health",
+									"host": ["{{eureka_url}}"],
+									"path": ["actuator", "health"]
+								},
+								"description": "Check Eureka Server health status"
+							}
+						},
+						{
+							"name": "Registered Services",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{eureka_url}}/eureka/apps",
+									"host": ["{{eureka_url}}"],
+									"path": ["eureka", "apps"]
+								},
+								"description": "Get list of all registered services"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "👥 User Service",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_service_url}}/actuator/health",
+							"host": ["{{user_service_url}}"],
+							"path": ["actuator", "health"]
+						},
+						"description": "Check User Service health directly"
+					}
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_service_url}}/users",
+							"host": ["{{user_service_url}}"],
+							"path": ["users"]
+						},
+						"description": "Get all users directly from User Service"
+					}
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phoneNumber\": \"1234567890\",\n  \"address\": \"123 Main St, New York, NY 10001\",\n  \"userType\": \"INDIVIDUAL\"\n}"
+						},
+						"url": {
+							"raw": "{{user_service_url}}/users",
+							"host": ["{{user_service_url}}"],
+							"path": ["users"]
+						},
+						"description": "Create a new user directly in User Service"
+					}
+				},
+				{
+					"name": "Get User by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_service_url}}/users/1",
+							"host": ["{{user_service_url}}"],
+							"path": ["users", "1"]
+						},
+						"description": "Get user by ID directly from User Service"
+					}
+				},
+				{
+					"name": "Get User by Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_service_url}}/users/email/john.doe@example.com",
+							"host": ["{{user_service_url}}"],
+							"path": ["users", "email", "john.doe@example.com"]
+						},
+						"description": "Get user by email directly from User Service"
+					}
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"John Updated\",\n  \"lastName\": \"Doe Updated\",\n  \"email\": \"john.updated@example.com\",\n  \"phoneNumber\": \"1234567890\",\n  \"address\": \"456 Updated St, New York, NY 10001\",\n  \"userType\": \"INDIVIDUAL\"\n}"
+						},
+						"url": {
+							"raw": "{{user_service_url}}/users/1",
+							"host": ["{{user_service_url}}"],
+							"path": ["users", "1"]
+						},
+						"description": "Update user directly in User Service"
+					}
+				},
+				{
+					"name": "Update User Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{user_service_url}}/users/1/status?status=ACTIVE",
+							"host": ["{{user_service_url}}"],
+							"path": ["users", "1", "status"],
+							"query": [
+								{
+									"key": "status",
+									"value": "ACTIVE"
+								}
+							]
+						},
+						"description": "Update user status directly in User Service"
+					}
+				},
+				{
+					"name": "Check Email Availability",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_service_url}}/users/check/email/john.doe@example.com",
+							"host": ["{{user_service_url}}"],
+							"path": ["users", "check", "email", "john.doe@example.com"]
+						},
+						"description": "Check if email is available directly from User Service"
+					}
+				},
+				{
+					"name": "Check Phone Availability",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_service_url}}/users/check/phone/1234567890",
+							"host": ["{{user_service_url}}"],
+							"path": ["users", "check", "phone", "1234567890"]
+						},
+						"description": "Check if phone number is available directly from User Service"
+					}
+				},
+				{
+					"name": "Get Users by Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_service_url}}/users/type/INDIVIDUAL",
+							"host": ["{{user_service_url}}"],
+							"path": ["users", "type", "INDIVIDUAL"]
+						},
+						"description": "Get users by type directly from User Service"
+					}
+				},
+				{
+					"name": "Get Users by Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_service_url}}/users/status/ACTIVE",
+							"host": ["{{user_service_url}}"],
+							"path": ["users", "status", "ACTIVE"]
+						},
+						"description": "Get users by status directly from User Service"
+					}
+				},
+				{
+					"name": "Search Users by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_service_url}}/users/search?name=John",
+							"host": ["{{user_service_url}}"],
+							"path": ["users", "search"],
+							"query": [
+								{
+									"key": "name",
+									"value": "John"
+								}
+							]
+						},
+						"description": "Search users by name directly from User Service"
+					}
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{user_service_url}}/users/1",
+							"host": ["{{user_service_url}}"],
+							"path": ["users", "1"]
+						},
+						"description": "Delete user directly from User Service"
+					}
+				}
+			]
+		},
+		{
+			"name": "🏦 Account Service",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_service_url}}/actuator/health",
+							"host": ["{{account_service_url}}"],
+							"path": ["actuator", "health"]
+						},
+						"description": "Check Account Service health directly"
+					}
+				},
+				{
+					"name": "Generate Account Number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_service_url}}/accounts/generate-number",
+							"host": ["{{account_service_url}}"],
+							"path": ["accounts", "generate-number"]
+						},
+						"description": "Generate account number directly from Account Service"
+					}
+				},
+				{
+					"name": "Create Account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": 1,\n  \"accountType\": \"SAVINGS\",\n  \"currency\": \"USD\",\n  \"initialBalance\": 1000.00,\n  \"description\": \"My savings account\"\n}"
+						},
+						"url": {
+							"raw": "{{account_service_url}}/accounts",
+							"host": ["{{account_service_url}}"],
+							"path": ["accounts"]
+						},
+						"description": "Create a new account directly in Account Service"
+					}
+				},
+				{
+					"name": "Get All Accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_service_url}}/accounts",
+							"host": ["{{account_service_url}}"],
+							"path": ["accounts"]
+						},
+						"description": "Get all accounts directly from Account Service"
+					}
+				},
+				{
+					"name": "Get Account by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_service_url}}/accounts/1",
+							"host": ["{{account_service_url}}"],
+							"path": ["accounts", "1"]
+						},
+						"description": "Get account by ID directly from Account Service"
+					}
+				},
+				{
+					"name": "Get Account by Number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_service_url}}/accounts/number/1234567890",
+							"host": ["{{account_service_url}}"],
+							"path": ["accounts", "number", "1234567890"]
+						},
+						"description": "Get account by number directly from Account Service"
+					}
+				},
+				{
+					"name": "Get Accounts by User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_service_url}}/accounts/user/1",
+							"host": ["{{account_service_url}}"],
+							"path": ["accounts", "user", "1"]
+						},
+						"description": "Get accounts by user ID directly from Account Service"
+					}
+				},
+				{
+					"name": "Get Accounts by Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_service_url}}/accounts/type/SAVINGS",
+							"host": ["{{account_service_url}}"],
+							"path": ["accounts", "type", "SAVINGS"]
+						},
+						"description": "Get accounts by type directly from Account Service"
+					}
+				},
+				{
+					"name": "Get Accounts by Currency",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_service_url}}/accounts/currency/USD",
+							"host": ["{{account_service_url}}"],
+							"path": ["accounts", "currency", "USD"]
+						},
+						"description": "Get accounts by currency directly from Account Service"
+					}
+				},
+				{
+					"name": "Get Accounts by Balance Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_service_url}}/accounts/balance/range?minBalance=1000&maxBalance=10000",
+							"host": ["{{account_service_url}}"],
+							"path": ["accounts", "balance", "range"],
+							"query": [
+								{
+									"key": "minBalance",
+									"value": "1000"
+								},
+								{
+									"key": "maxBalance",
+									"value": "10000"
+								}
+							]
+						},
+						"description": "Get accounts by balance range directly from Account Service"
+					}
+				},
+				{
+					"name": "Update Account Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{account_service_url}}/accounts/1/status?status=ACTIVE",
+							"host": ["{{account_service_url}}"],
+							"path": ["accounts", "1", "status"],
+							"query": [
+								{
+									"key": "status",
+									"value": "ACTIVE"
+								}
+							]
+						},
+						"description": "Update account status directly in Account Service"
+					}
+				},
+				{
+					"name": "Update Account Balance",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{account_service_url}}/accounts/1/balance?newBalance=7500.00",
+							"host": ["{{account_service_url}}"],
+							"path": ["accounts", "1", "balance"],
+							"query": [
+								{
+									"key": "newBalance",
+									"value": "7500.00"
+								}
+							]
+						},
+						"description": "Update account balance directly in Account Service"
+					}
+				},
+				{
+					"name": "Check Account Number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_service_url}}/accounts/check/1234567890",
+							"host": ["{{account_service_url}}"],
+							"path": ["accounts", "check", "1234567890"]
+						},
+						"description": "Check if account number exists directly from Account Service"
+					}
+				},
+				{
+					"name": "Count Accounts by User and Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_service_url}}/accounts/count/user/1/status/ACTIVE",
+							"host": ["{{account_service_url}}"],
+							"path": ["accounts", "count", "user", "1", "status", "ACTIVE"]
+						},
+						"description": "Count accounts by user and status directly from Account Service"
+					}
+				},
+				{
+					"name": "Delete Account",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{account_service_url}}/accounts/1",
+							"host": ["{{account_service_url}}"],
+							"path": ["accounts", "1"]
+						},
+						"description": "Delete account directly from Account Service"
+					}
+				}
+			]
+		},
+		{
+			"name": "💳 Transaction Service",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/actuator/health",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["actuator", "health"]
+						},
+						"description": "Check Transaction Service health directly"
+					}
+				},
+				{
+					"name": "Generate Transaction ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/generate/transaction-id",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "generate", "transaction-id"]
+						},
+						"description": "Generate transaction ID directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Generate Reference Number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/generate/reference-number",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "generate", "reference-number"]
+						},
+						"description": "Generate reference number directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Create Transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fromAccountId\": 1,\n  \"toAccountId\": 2,\n  \"amount\": 500.00,\n  \"transactionType\": \"TRANSFER\",\n  \"description\": \"Transfer to savings account\",\n  \"currency\": \"USD\"\n}"
+						},
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions"]
+						},
+						"description": "Create a new transaction directly in Transaction Service"
+					}
+				},
+				{
+					"name": "Get All Transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions"]
+						},
+						"description": "Get all transactions directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Get Transaction by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/1",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "1"]
+						},
+						"description": "Get transaction by ID directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Get Transaction by Transaction ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/transaction-id/TXN123456789",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "transaction-id", "TXN123456789"]
+						},
+						"description": "Get transaction by transaction ID directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Get Transactions by From Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/from-account/1",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "from-account", "1"]
+						},
+						"description": "Get transactions by from account directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Get Transactions by To Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/to-account/2",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "to-account", "2"]
+						},
+						"description": "Get transactions by to account directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Get Transactions by Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/account/1",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "account", "1"]
+						},
+						"description": "Get transactions by account directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Get Transactions by Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/type/TRANSFER",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "type", "TRANSFER"]
+						},
+						"description": "Get transactions by type directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Get Transactions by Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/status/COMPLETED",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "status", "COMPLETED"]
+						},
+						"description": "Get transactions by status directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Get Transactions by Amount Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/amount/range?minAmount=100&maxAmount=5000",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "amount", "range"],
+							"query": [
+								{
+									"key": "minAmount",
+									"value": "100"
+								},
+								{
+									"key": "maxAmount",
+									"value": "5000"
+								}
+							]
+						},
+						"description": "Get transactions by amount range directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Get Transactions by Date Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/date/range?startDate=2024-01-01T00:00:00&endDate=2024-12-31T23:59:59",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "date", "range"],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-01-01T00:00:00"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-12-31T23:59:59"
+								}
+							]
+						},
+						"description": "Get transactions by date range directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Get Transaction by Reference",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/reference/REF123456789",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "reference", "REF123456789"]
+						},
+						"description": "Get transaction by reference directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Update Transaction Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/1/status?status=COMPLETED",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "1", "status"],
+							"query": [
+								{
+									"key": "status",
+									"value": "COMPLETED"
+								}
+							]
+						},
+						"description": "Update transaction status directly in Transaction Service"
+					}
+				},
+				{
+					"name": "Check Transaction ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/check/TXN123456789",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "check", "TXN123456789"]
+						},
+						"description": "Check if transaction ID exists directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Count Transactions by From Account and Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/count/from-account/1/status/COMPLETED",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "count", "from-account", "1", "status", "COMPLETED"]
+						},
+						"description": "Count transactions by from account and status directly from Transaction Service"
+					}
+				},
+				{
+					"name": "Delete Transaction",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{transaction_service_url}}/transactions/1",
+							"host": ["{{transaction_service_url}}"],
+							"path": ["transactions", "1"]
+						},
+						"description": "Delete transaction directly from Transaction Service"
+					}
+				}
+			]
+		},
+		{
+			"name": "💸 Payment Service",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{payment_service_url}}/actuator/health",
+							"host": ["{{payment_service_url}}"],
+							"path": ["actuator", "health"]
+						},
+						"description": "Check Payment Service health directly"
+					}
+				}
+			]
+		},
+		{
+			"name": "🔔 Notification Service",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{notification_service_url}}/actuator/health",
+							"host": ["{{notification_service_url}}"],
+							"path": ["actuator", "health"]
+						},
+						"description": "Check Notification Service health directly"
+					}
+				}
+			]
+		},
+		{
+			"name": "📊 Monitoring & Metrics",
+			"item": [
+				{
+					"name": "Prometheus Metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{prometheus_url}}/metrics",
+							"host": ["{{prometheus_url}}"],
+							"path": ["metrics"]
+						},
+						"description": "Get Prometheus metrics"
+					}
+				},
+				{
+					"name": "Grafana Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{grafana_url}}/",
+							"host": ["{{grafana_url}}"],
+							"path": [""]
+						},
+						"description": "Access Grafana monitoring dashboard"
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "test",
+			"script": {
+				"exec": [
+					"// Test script to verify API responses",
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test(\"Response has required fields\", function () {",
+					"    var jsonData = pm.response.json();",
+					"    pm.expect(jsonData).to.have.property('status');",
+					"    pm.expect(jsonData).to.have.property('message');",
+					"});"
+				],
+				"type": "text/javascript"
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "eureka_url",
+			"value": "http://localhost:8761",
+			"type": "string"
+		},
+		{
+			"key": "user_service_url",
+			"value": "http://localhost:8081",
+			"type": "string"
+		},
+		{
+			"key": "account_service_url",
+			"value": "http://localhost:8082",
+			"type": "string"
+		},
+		{
+			"key": "transaction_service_url",
+			"value": "http://localhost:8083",
+			"type": "string"
+		},
+		{
+			"key": "payment_service_url",
+			"value": "http://localhost:8084",
+			"type": "string"
+		},
+		{
+			"key": "notification_service_url",
+			"value": "http://localhost:8085",
+			"type": "string"
+		},
+		{
+			"key": "prometheus_url",
+			"value": "http://localhost:9090",
+			"type": "string"
+		},
+		{
+			"key": "grafana_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
+

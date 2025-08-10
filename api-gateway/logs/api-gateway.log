@@ -1,0 +1,127 @@
+2025-08-10 00:25:09 [main] INFO  c.b.gateway.ApiGatewayApplication [] - Starting ApiGatewayApplication using Java 1.8.0_321 on KARTHIKs-MacBook-Air.local with PID 33582 (/Users/karthikv/Desktop/bankingapplication/api-gateway/target/classes started by karthikv in /Users/karthikv/Desktop/bankingapplication/api-gateway)
+2025-08-10 00:25:09 [main] DEBUG c.b.gateway.ApiGatewayApplication [] - Running with Spring Boot v2.7.18, Spring v5.3.31
+2025-08-10 00:25:09 [main] INFO  c.b.gateway.ApiGatewayApplication [] - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 00:25:12 [main] DEBUG i.g.r.u.RxJava2OnClasspathCondition [] - RxJava2 related Aspect extensions are not activated, because RxJava2 is not on the classpath.
+2025-08-10 00:25:12 [main] DEBUG i.g.r.u.RxJava2OnClasspathCondition [] - RxJava2 related Aspect extensions are not activated, because RxJava2 is not on the classpath.
+2025-08-10 00:25:12 [main] DEBUG i.g.r.u.RxJava2OnClasspathCondition [] - RxJava2 related Aspect extensions are not activated, because RxJava2 is not on the classpath.
+2025-08-10 00:25:12 [main] DEBUG i.g.r.u.RxJava2OnClasspathCondition [] - RxJava2 related Aspect extensions are not activated, because RxJava2 is not on the classpath.
+2025-08-10 00:25:12 [main] DEBUG i.g.r.u.RxJava2OnClasspathCondition [] - RxJava2 related Aspect extensions are not activated, because RxJava2 is not on the classpath.
+2025-08-10 00:25:13 [main] INFO  o.s.cloud.context.scope.GenericScope [] - BeanFactory id=c93d3fa6-9208-362d-a575-893f17dd9d24
+2025-08-10 00:25:13 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [] - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-08-10 00:25:13 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [] - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-08-10 00:25:13 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [] - Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-08-10 00:25:13 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer [] - Tomcat initialized with port(s): 8080 (http)
+2025-08-10 00:25:13 [main] INFO  o.a.catalina.core.StandardService [] - Starting service [Tomcat]
+2025-08-10 00:25:13 [main] INFO  o.a.catalina.core.StandardEngine [] - Starting Servlet engine: [Apache Tomcat/9.0.83]
+2025-08-10 00:25:14 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration [] - 
+
+Using generated security password: b02fd474-9d14-491a-8ff3-68ec725f72f1
+
+2025-08-10 00:25:16 [main] DEBUG o.s.c.g.config.GatewayProperties [] - Routes supplied from Gateway Properties: [RouteDefinition{id='user-service-route', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/users/**}}], filters=[FilterDefinition{name='CircuitBreaker', args={name=user-service-circuit-breaker, fallbackUri=forward:/fallback/user-service}}], uri=lb://user-service, order=0, metadata={}}, RouteDefinition{id='account-service-route', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/accounts/**}}], filters=[FilterDefinition{name='CircuitBreaker', args={name=account-service-circuit-breaker, fallbackUri=forward:/fallback/account-service}}], uri=lb://account-service, order=0, metadata={}}, RouteDefinition{id='transaction-service-route', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/transactions/**}}], filters=[FilterDefinition{name='CircuitBreaker', args={name=transaction-service-circuit-breaker, fallbackUri=forward:/fallback/transaction-service}}], uri=lb://transaction-service, order=0, metadata={}}, RouteDefinition{id='payment-service-route', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/payments/**}}], filters=[FilterDefinition{name='CircuitBreaker', args={name=payment-service-circuit-breaker, fallbackUri=forward:/fallback/payment-service}}], uri=lb://payment-service, order=0, metadata={}}, RouteDefinition{id='notification-service-route', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/notifications/**}}], filters=[FilterDefinition{name='CircuitBreaker', args={name=notification-service-circuit-breaker, fallbackUri=forward:/fallback/notification-service}}], uri=lb://notification-service, order=0, metadata={}}]
+2025-08-10 00:25:18 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator [] - Loaded RoutePredicateFactory [After]
+2025-08-10 00:25:18 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator [] - Loaded RoutePredicateFactory [Before]
+2025-08-10 00:25:18 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator [] - Loaded RoutePredicateFactory [Between]
+2025-08-10 00:25:18 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator [] - Loaded RoutePredicateFactory [Cookie]
+2025-08-10 00:25:18 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator [] - Loaded RoutePredicateFactory [Header]
+2025-08-10 00:25:18 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator [] - Loaded RoutePredicateFactory [Host]
+2025-08-10 00:25:18 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator [] - Loaded RoutePredicateFactory [Method]
+2025-08-10 00:25:18 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator [] - Loaded RoutePredicateFactory [Path]
+2025-08-10 00:25:18 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator [] - Loaded RoutePredicateFactory [Query]
+2025-08-10 00:25:18 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator [] - Loaded RoutePredicateFactory [ReadBody]
+2025-08-10 00:25:18 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator [] - Loaded RoutePredicateFactory [RemoteAddr]
+2025-08-10 00:25:18 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator [] - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2025-08-10 00:25:18 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator [] - Loaded RoutePredicateFactory [Weight]
+2025-08-10 00:25:18 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator [] - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2025-08-10 00:25:18 [main] DEBUG o.s.w.r.r.m.a.RequestMappingHandlerMapping [] - 4 mappings in 'requestMappingHandlerMapping'
+2025-08-10 00:25:19 [main] DEBUG o.s.w.r.h.SimpleUrlHandlerMapping [] - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-10 00:25:20 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver [] - Exposing 7 endpoint(s) beneath base path '/actuator'
+2025-08-10 00:25:20 [main] DEBUG o.s.w.r.r.m.a.ControllerMethodResolver [] - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 @ExceptionHandler
+2025-08-10 00:25:21 [main] DEBUG o.s.w.s.a.HttpWebHandlerAdapter [] - enableLoggingRequestDetails='false': form data and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-10 00:25:22 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration [] - Eureka HTTP Client uses RestTemplate.
+2025-08-10 00:25:22 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger [] - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-08-10 00:25:22 [main] INFO  o.s.c.n.eureka.InstanceInfoFactory [] - Setting initial instance status as: STARTING
+2025-08-10 00:25:22 [main] INFO  c.netflix.discovery.DiscoveryClient [] - Initializing Eureka in region us-east-1
+2025-08-10 00:25:22 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver [] - Resolving eureka endpoints via configuration
+2025-08-10 00:25:22 [main] INFO  c.netflix.discovery.DiscoveryClient [] - Disable delta property : false
+2025-08-10 00:25:22 [main] INFO  c.netflix.discovery.DiscoveryClient [] - Single vip registry refresh property : null
+2025-08-10 00:25:22 [main] INFO  c.netflix.discovery.DiscoveryClient [] - Force full registry fetch : false
+2025-08-10 00:25:22 [main] INFO  c.netflix.discovery.DiscoveryClient [] - Application is null : false
+2025-08-10 00:25:22 [main] INFO  c.netflix.discovery.DiscoveryClient [] - Registered Applications size is zero : true
+2025-08-10 00:25:22 [main] INFO  c.netflix.discovery.DiscoveryClient [] - Application version is -1: true
+2025-08-10 00:25:22 [main] INFO  c.netflix.discovery.DiscoveryClient [] - Getting all instance registry info from the eureka server
+2025-08-10 00:25:23 [main] DEBUG o.s.web.client.RestTemplate [] - HTTP GET http://localhost:8761/eureka/apps/
+2025-08-10 00:25:23 [main] DEBUG o.s.web.client.RestTemplate [] - Accept=[application/json, application/*+json]
+2025-08-10 00:25:23 [main] DEBUG o.s.web.client.RestTemplate [] - Response 200 OK
+2025-08-10 00:25:23 [main] DEBUG o.s.web.client.RestTemplate [] - Reading to [org.springframework.cloud.netflix.eureka.http.EurekaApplications]
+2025-08-10 00:25:23 [main] INFO  c.netflix.discovery.DiscoveryClient [] - The response status is 200
+2025-08-10 00:25:23 [main] INFO  c.netflix.discovery.DiscoveryClient [] - Starting heartbeat executor: renew interval is: 30
+2025-08-10 00:25:23 [main] INFO  c.n.discovery.InstanceInfoReplicator [] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-08-10 00:25:23 [main] INFO  c.netflix.discovery.DiscoveryClient [] - Discovery Client initialized at timestamp 1754799923863 with initial instances count: 6
+2025-08-10 00:25:23 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry [] - Registering application API-GATEWAY with eureka with status UP
+2025-08-10 00:25:23 [main] INFO  c.netflix.discovery.DiscoveryClient [] - Saw local status change event StatusChangeEvent [timestamp=1754799923896, current=UP, previous=STARTING]
+2025-08-10 00:25:23 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient [] - DiscoveryClient_API-GATEWAY/10.0.0.184:api-gateway:8080: registering service...
+2025-08-10 00:25:23 [DiscoveryClient-InstanceInfoReplicator-0] DEBUG o.s.web.client.RestTemplate [] - HTTP POST http://localhost:8761/eureka/apps/API-GATEWAY
+2025-08-10 00:25:23 [DiscoveryClient-InstanceInfoReplicator-0] DEBUG o.s.web.client.RestTemplate [] - Accept=[application/json, application/*+json]
+2025-08-10 00:25:24 [DiscoveryClient-InstanceInfoReplicator-0] DEBUG o.s.web.client.RestTemplate [] - Writing [InstanceInfo [instanceId = 10.0.0.184:api-gateway:8080, appName = API-GATEWAY, hostName = 10.0.0.184, status = UP, ipAddr = 10.0.0.184, port = 8080, securePort = 443, dataCenterInfo = com.netflix.appinfo.MyDataCenterInfo@64665781] as "application/json"
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition ReactiveCompositeDiscoveryClient_API-GATEWAY applying {pattern=/api-gateway/**} to Path
+2025-08-10 00:25:24 [DiscoveryClient-InstanceInfoReplicator-0] DEBUG o.s.web.client.RestTemplate [] - Response 204 NO_CONTENT
+2025-08-10 00:25:24 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient [] - DiscoveryClient_API-GATEWAY/10.0.0.184:api-gateway:8080 - registration status: 204
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition ReactiveCompositeDiscoveryClient_API-GATEWAY applying filter {regexp=/api-gateway/?(?<remaining>.*), replacement=/${remaining}} to RewritePath
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition matched: ReactiveCompositeDiscoveryClient_API-GATEWAY
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition ReactiveCompositeDiscoveryClient_ACCOUNT-SERVICE applying {pattern=/account-service/**} to Path
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition ReactiveCompositeDiscoveryClient_ACCOUNT-SERVICE applying filter {regexp=/account-service/?(?<remaining>.*), replacement=/${remaining}} to RewritePath
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition matched: ReactiveCompositeDiscoveryClient_ACCOUNT-SERVICE
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition ReactiveCompositeDiscoveryClient_PAYMENT-SERVICE applying {pattern=/payment-service/**} to Path
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition ReactiveCompositeDiscoveryClient_PAYMENT-SERVICE applying filter {regexp=/payment-service/?(?<remaining>.*), replacement=/${remaining}} to RewritePath
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition matched: ReactiveCompositeDiscoveryClient_PAYMENT-SERVICE
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition ReactiveCompositeDiscoveryClient_TRANSACTION-SERVICE applying {pattern=/transaction-service/**} to Path
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition ReactiveCompositeDiscoveryClient_TRANSACTION-SERVICE applying filter {regexp=/transaction-service/?(?<remaining>.*), replacement=/${remaining}} to RewritePath
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition matched: ReactiveCompositeDiscoveryClient_TRANSACTION-SERVICE
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition ReactiveCompositeDiscoveryClient_NOTIFICATION-SERVICE applying {pattern=/notification-service/**} to Path
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition ReactiveCompositeDiscoveryClient_NOTIFICATION-SERVICE applying filter {regexp=/notification-service/?(?<remaining>.*), replacement=/${remaining}} to RewritePath
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition matched: ReactiveCompositeDiscoveryClient_NOTIFICATION-SERVICE
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition ReactiveCompositeDiscoveryClient_USER-SERVICE applying {pattern=/user-service/**} to Path
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition ReactiveCompositeDiscoveryClient_USER-SERVICE applying filter {regexp=/user-service/?(?<remaining>.*), replacement=/${remaining}} to RewritePath
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition matched: ReactiveCompositeDiscoveryClient_USER-SERVICE
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition user-service-route applying {_genkey_0=/api/users/**} to Path
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition user-service-route applying filter {name=user-service-circuit-breaker, fallbackUri=forward:/fallback/user-service} to CircuitBreaker
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition matched: user-service-route
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition account-service-route applying {_genkey_0=/api/accounts/**} to Path
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition account-service-route applying filter {name=account-service-circuit-breaker, fallbackUri=forward:/fallback/account-service} to CircuitBreaker
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition matched: account-service-route
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition transaction-service-route applying {_genkey_0=/api/transactions/**} to Path
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition transaction-service-route applying filter {name=transaction-service-circuit-breaker, fallbackUri=forward:/fallback/transaction-service} to CircuitBreaker
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition matched: transaction-service-route
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition payment-service-route applying {_genkey_0=/api/payments/**} to Path
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition payment-service-route applying filter {name=payment-service-circuit-breaker, fallbackUri=forward:/fallback/payment-service} to CircuitBreaker
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition matched: payment-service-route
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition notification-service-route applying {_genkey_0=/api/notifications/**} to Path
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition notification-service-route applying filter {name=notification-service-circuit-breaker, fallbackUri=forward:/fallback/notification-service} to CircuitBreaker
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.r.RouteDefinitionRouteLocator [] - RouteDefinition matched: notification-service-route
+2025-08-10 00:25:24 [main] DEBUG o.s.c.g.filter.GatewayMetricsFilter [] - New routes count: 11
+2025-08-10 00:25:24 [main] WARN  o.s.b.w.r.c.AnnotationConfigReactiveWebServerApplicationContext [] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+2025-08-10 00:25:24 [main] INFO  c.netflix.discovery.DiscoveryClient [] - Shutting down DiscoveryClient ...
+2025-08-10 00:25:27 [main] INFO  c.netflix.discovery.DiscoveryClient [] - Unregistering ...
+2025-08-10 00:25:27 [main] DEBUG o.s.web.client.RestTemplate [] - HTTP DELETE http://localhost:8761/eureka/apps/API-GATEWAY/10.0.0.184:api-gateway:8080
+2025-08-10 00:25:27 [main] DEBUG o.s.web.client.RestTemplate [] - Accept=[application/json, application/*+json]
+2025-08-10 00:25:27 [main] DEBUG o.s.web.client.RestTemplate [] - Response 200 OK
+2025-08-10 00:25:27 [main] INFO  c.netflix.discovery.DiscoveryClient [] - DiscoveryClient_API-GATEWAY/10.0.0.184:api-gateway:8080 - deregister  status: 200
+2025-08-10 00:25:27 [main] INFO  c.netflix.discovery.DiscoveryClient [] - Completed shut down of DiscoveryClient
+2025-08-10 00:25:27 [main] INFO  o.a.catalina.core.StandardService [] - Stopping service [Tomcat]
+2025-08-10 00:25:27 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener [] - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2025-08-10 00:25:27 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter [] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+

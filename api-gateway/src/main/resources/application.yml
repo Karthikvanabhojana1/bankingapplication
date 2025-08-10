@@ -1,0 +1,217 @@
+server:
+  port: 8080
+
+# JWT Configuration
+jwt:
+  secret: your-super-secret-jwt-key-for-banking-application-2024
+  expiration: 86400000  # 24 hours in milliseconds
+
+spring:
+  application:
+    name: api-gateway
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: user-service-route
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/**
+
+        - id: account-service-route
+          uri: lb://account-service
+          predicates:
+            - Path=/api/accounts/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: account-service-circuit-breaker
+                fallbackUri: forward:/fallback/account-service
+
+        - id: transaction-service-route
+          uri: lb://transaction-service
+          predicates:
+            - Path=/api/transactions/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: transaction-service-circuit-breaker
+                fallbackUri: forward:/fallback/transaction-service
+
+        - id: payment-service-route
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/payments/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: payment-service-circuit-breaker
+                fallbackUri: forward:/fallback/payment-service
+
+        - id: notification-service-route
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notifications/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: notification-service-circuit-breaker
+                fallbackUri: forward:/fallback/notification-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+# OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+    doc-expansion: none
+    disable-swagger-default-url: true
+    display-request-duration: true
+
+# Enhanced Security Configuration
+security:
+  headers:
+    enabled: true
+    content-security-policy: true
+    x-frame-options: DENY
+    x-content-type-options: nosniff
+    x-xss-protection: "1; mode=block"
+    referrer-policy: strict-origin-when-cross-origin
+
+# Enhanced Monitoring Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,gateway,env,configprops
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+    prometheus:
+      enabled: true
+    env:
+      show-values: always
+    configprops:
+      show-values: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.name}
+      environment: ${spring.profiles.active:default}
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+      percentiles:
+        http.server.requests: 0.5, 0.95, 0.99
+
+# Enhanced Logging Configuration
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    com.banking.gateway: DEBUG
+    io.github.resilience4j: DEBUG
+    org.springframework.web.reactive: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} [%X{requestId}] - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} [%X{requestId}] - %msg%n"
+  file:
+    name: logs/api-gateway.log
+    max-size: 100MB
+    max-history: 30
+
+# Enhanced Rate Limiting Configuration
+rate-limit:
+  requests-per-minute: 60
+  requests-per-hour: 1000
+  requests-per-day: 10000
+  burst-capacity: 100
+  refill-rate: 60
+  enable-user-based-throttling: true
+  enable-ip-based-throttling: true
+
+# Enhanced Circuit Breaker Configuration
+resilience4j:
+  circuitbreaker:
+    instances:
+      user-service-circuit-breaker:
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 20s
+        failure-rate-threshold: 40
+        slow-call-rate-threshold: 50
+        slow-call-duration-threshold: 2s
+      account-service-circuit-breaker:
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 25s
+        failure-rate-threshold: 35
+        slow-call-rate-threshold: 40
+        slow-call-duration-threshold: 3s
+      transaction-service-circuit-breaker:
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 30s
+        failure-rate-threshold: 30
+        slow-call-rate-threshold: 35
+        slow-call-duration-threshold: 5s
+      payment-service-circuit-breaker:
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 40s
+        failure-rate-threshold: 25
+        slow-call-rate-threshold: 30
+        slow-call-duration-threshold: 10s
+      notification-service-circuit-breaker:
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 15s
+        failure-rate-threshold: 60
+        slow-call-rate-threshold: 70
+        slow-call-duration-threshold: 1s
+  timelimiter:
+    instances:
+      user-service-timelimiter:
+        timeout-duration: 8s
+        cancel-running-future: true
+      account-service-timelimiter:
+        timeout-duration: 12s
+        cancel-running-future: true
+      transaction-service-timelimiter:
+        timeout-duration: 15s
+        cancel-running-future: true
+      payment-service-timelimiter:
+        timeout-duration: 20s
+        cancel-running-future: true
+      notification-service-timelimiter:
+        timeout-duration: 5s
+        cancel-running-future: true
